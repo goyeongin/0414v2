@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>피라미드</title>
+  <style>
+    
+    body {
+      background: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    
+    .tree {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;    
+      gap: 1px;               
+    }
+
+    
+    .row {
+      display: grid;
+      grid-auto-flow: column; 
+      gap: 1px;               
+    }
+
+    
+    .star {
+      font-family: 'Courier New', monospace; 
+      font-weight: bold;                     
+      font-size: 20px;                       
+      text-align: center;
+      width: 1em;                            
+    }
+
+    
+    .star { color: purple; }              
+   
+  </style>
+</head>
+<body>
+  
+  <div class="tree" id="tree"></div>
+
+  <script>
+    const rows = 10; 
+    const tree = document.getElementById("tree");
+
+
+    for (let i = 0; i < rows; i++) {
+      const row = document.createElement("div");
+      row.className = "row";
+
+      const totalCols = 2 * rows - 1;     
+      const starCount = 2 * i + 1;        
+      const leftPadding = Math.floor((totalCols - starCount) / 2); 
+
+      
+      for (let j = 0; j < leftPadding; j++) {
+        const blank = document.createElement("div");
+        blank.className = "star";
+        blank.innerHTML = "&nbsp;"; 
+        row.appendChild(blank);
+      }
+
+      
+      for (let j = 0; j < starCount; j++) {
+        const star = document.createElement("div");
+        star.className = "star";
+
+        star.textContent = "*"; 
+        row.appendChild(star);
+      }
+
+      
+      for (let j = 0; j < leftPadding; j++) {
+        const blank = document.createElement("div");
+        blank.className = "star";
+        blank.innerHTML = "&nbsp;";
+        row.appendChild(blank);
+      }
+
+      tree.appendChild(row);
+    }
+  </script>
+</body>
+</html>
